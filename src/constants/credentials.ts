@@ -1,0 +1,3 @@
+let API_KEY = "2579668bc42043d8b1f173534232208";
+
+export { API_KEY };
