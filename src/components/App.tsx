@@ -1,4 +1,4 @@
-import useFetchWeather from "./hooks/useFetchWeather";
+import useFetchWeather from "../hooks/useFetchWeather";
 
 const App = () => {
   const { weatherResult } = useFetchWeather();

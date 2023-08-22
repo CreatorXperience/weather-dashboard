@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import fetchWeatherResults from "../../services/axios";
+import fetchWeatherResults from "../services/axios";
 
 type TWeatherData = {
   astro: {};
