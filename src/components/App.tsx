@@ -10,16 +10,21 @@ type TOpenApiResponse = {
     };
   };
 };
+
 const App = () => {
   const [weatherResult, setWeatherResult] = useState<TOpenApiResponse | null>(
     null
   );
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const fetch = async () => {
       try {
         let data = await fetchWeatherResults("nigeria");
+
         setWeatherResult(data);
+        setLoading(true);
         console.log(data);
       } catch (e) {
         console.log(e);
@@ -33,7 +38,7 @@ const App = () => {
     const ListedItem = weatherResult?.data.forecast?.forecastday.map(
       (result) => {
         return (
-          <li role="items" key={result.date}>
+          <li aria-role="items" key={result.date}>
             {result.date}
           </li>
         );
@@ -45,6 +50,7 @@ const App = () => {
   return (
     <div>
       <p> Weather</p>
+      {loading ? <p>loading...</p> : ""}
 
       <ul>{mapContent()}</ul>
     </div>

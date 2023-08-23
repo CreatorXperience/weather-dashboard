@@ -1,6 +1,6 @@
 import { rest } from "msw";
-// import { API_KEY } from "../constants/credentials";
 import { setupServer } from "msw/node";
+import "@testing-library/jest-dom";
 
 // let city_name = "ghana";
 
@@ -38,6 +38,7 @@ const createMockServer = () => {
   );
 
   const server = setupServer(requestHandler);
+
   beforeAll(() => {
     server.listen();
   });
