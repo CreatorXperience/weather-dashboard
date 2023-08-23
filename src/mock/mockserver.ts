@@ -1,14 +1,54 @@
 import { rest } from "msw";
-import { API_KEY } from "../constants/credentials";
+// import { API_KEY } from "../constants/credentials";
+import { setupServer } from "msw/node";
 
-let city_name = "nigeria";
+// let city_name = "ghana";
+
 const createMockServer = () => {
-  rest.get(
-    `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city_name}&days=${5}`,
+  const requestHandler = rest.get(
+    `http://api.weatherapi.com/v1/forecast.json`,
+    // @ts-ignore
     (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json([{}]));
+      return res(
+        ctx.json({
+          data: {
+            forecast: {
+              forecastday: [
+                {
+                  date: "2021-09-20",
+                },
+                {
+                  date: "2021-09-20",
+                },
+                {
+                  date: "2021-09-20",
+                },
+                {
+                  date: "2021-09-20",
+                },
+                {
+                  date: "2021-09-20",
+                },
+              ],
+            },
+          },
+        })
+      );
     }
   );
+
+  const server = setupServer(requestHandler);
+  beforeAll(() => {
+    server.listen();
+  });
+
+  afterEach(() => {
+    server.resetHandlers();
+  });
+
+  afterAll(() => {
+    server.close();
+  });
 };
 
 export default createMockServer;
