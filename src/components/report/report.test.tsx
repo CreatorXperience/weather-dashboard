@@ -17,20 +17,24 @@ describe("weather report", () => {
       },
     };
 
-    render(<Reports weatherResult={Result} />);
+    render(<Reports loading={false} weatherResult={Result} />);
 
     const listItem = await screen.findAllByRole("items");
     expect(listItem).toHaveLength(2);
+    expect(
+      screen.queryByRole("paragraph", { name: "loading" })
+    ).not.toBeInTheDocument();
     screen.debug();
   });
 
   test("renders weather reports to the user", async () => {
     const Result = null;
 
-    render(<Reports weatherResult={Result} />);
+    render(<Reports loading={true} weatherResult={Result} />);
 
     const listItem = await screen.findByRole("empty");
     expect(listItem).toBeInTheDocument();
+
     screen.debug();
   });
 });

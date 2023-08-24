@@ -1,14 +1,11 @@
-import useFetchWeather from "../../hooks/useFetchWeather";
-import Reports from "../report";
+import { RouterProvider } from "react-router-dom";
+
+import browserRouter from "../../router/routes";
 
 const App = () => {
-  const { loading, weatherResult } = useFetchWeather();
-
   return (
     <div>
-      <p> Weather</p>
-      {loading ? <p>loading...</p> : ""}
-      <Reports weatherResult={weatherResult} />
+      <RouterProvider router={browserRouter} />
     </div>
   );
 };

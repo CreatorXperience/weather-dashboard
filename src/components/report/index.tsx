@@ -2,10 +2,12 @@ import { TOpenApiResponse } from "../../type";
 
 type TReportProps = {
   weatherResult: TOpenApiResponse | null;
+  loading: boolean;
 };
-const Reports = ({ weatherResult }: TReportProps) => {
+const Reports = ({ weatherResult, loading }: TReportProps) => {
   return (
     <div>
+      {loading ? <p> Loading</p> : ""}
       <ul>
         {weatherResult ? (
           weatherResult.forecast.forecastday.map((result) => {
