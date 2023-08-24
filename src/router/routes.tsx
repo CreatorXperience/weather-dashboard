@@ -4,8 +4,8 @@ import ReportContext from "../components/AppContext";
 
 let browserRouter = createBrowserRouter([
   {
-    element: <ReportContext />,
     path: "/",
+    element: <ReportContext />,
   },
 ]);
 
