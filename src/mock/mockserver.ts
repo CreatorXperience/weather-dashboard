@@ -46,6 +46,8 @@ const createMockServer = () => {
   afterAll(() => {
     server.close();
   });
+
+  return requestHandler;
 };
 
 export default createMockServer;
