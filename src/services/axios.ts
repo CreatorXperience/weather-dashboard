@@ -6,7 +6,9 @@ const fetchWeatherResults = async (city_name: string) => {
     `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city_name}&days=${5}`
   );
 
-  return data;
+  console.log(data);
+
+  return data.data;
 };
 
 export default fetchWeatherResults;

@@ -1,17 +1,17 @@
-import { setupServer } from "msw/node";
-import createMockServer from "./src/mock/mockserver";
+// import { setupServer } from "msw/node";
+// import createMockServer from "./src/mock/mockserver";
 
-let { requestHandler } = createMockServer();
+// let { requestHandler } = createMockServer();
 
-const server = setupServer(requestHandler);
-beforeAll(() => {
-  server.listen();
-});
+// const server = setupServer(requestHandler);
+// beforeAll(() => {
+//   server.listen();
+// });
 
-afterAll(() => {
-  server.resetHandlers();
-});
+// afterAll(() => {
+//   server.resetHandlers();
+// });
 
-afterAll(() => {
-  server.close();
-});
+// afterAll(() => {
+//   server.close();
+// });
