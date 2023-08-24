@@ -13,5 +13,5 @@ test("render correctly", async () => {
 
   expect(weatherText).toBeInTheDocument();
   // await pause();
-  screen.debug();
+  // screen.debug();
 });
