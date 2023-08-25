@@ -21,6 +21,7 @@ const DashboardWrapper = styled.div`
   .dashboard-wrapper {
     display: flex;
     width: 100%;
+    height: 100vh;
     justify-content: space-between;
     border: 1px solid green;
   }

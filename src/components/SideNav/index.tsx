@@ -8,7 +8,7 @@ const SideNav = () => {
 
   const handleClick = () => {
     setIsClicked((IsClicked) => !IsClicked);
-    ref.current?.classList.toggle(".movein");
+    // ref.current?.classList.toggle(".movein");
   };
   return (
     <SideNavWrapper>
@@ -24,28 +24,28 @@ const SideNav = () => {
       </div>
 
       {/* TODO: remove IsClicked and make side nav slide out */}
-      {IsClicked ? (
-        <div className={`container-sm ${IsClicked ? "moveout" : ""}`} ref={ref}>
-          <div className="icons">
-            {Icons.brand()}
-            <p>Weather</p>
-          </div>
-          <div className="icons">
-            {Icons.homeIcon()} <p>Home</p>
-          </div>
-          <div className="icons">
-            {Icons.reportIcon()} <p>Report</p>{" "}
-          </div>
-          <div className="icons">
-            {Icons.profileIcon()} <p>Profile</p>
-          </div>
-          <div className="icons">
-            {Icons.settingsIcon()} <p>Settings</p>
-          </div>
+
+      <div
+        className={`container-sm ${IsClicked ? "movein" : "moveout"}`}
+        ref={ref}
+      >
+        <div className="icons">
+          {Icons.brand()}
+          <p>Weather</p>
         </div>
-      ) : (
-        ""
-      )}
+        <div className="icons">
+          {Icons.homeIcon()} <p>Home</p>
+        </div>
+        <div className="icons">
+          {Icons.reportIcon()} <p>Report</p>{" "}
+        </div>
+        <div className="icons">
+          {Icons.profileIcon()} <p>Profile</p>
+        </div>
+        <div className="icons">
+          {Icons.settingsIcon()} <p>Settings</p>
+        </div>
+      </div>
     </SideNavWrapper>
   );
 };
@@ -54,9 +54,11 @@ export default SideNav;
 
 const SideNavWrapper = styled.div`
   width: 6%;
+  height: 100%;
+
   .container {
     height: 100vh;
-    border: 1px solid #70707089;
+    border: 1px solid #7070703e;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -85,7 +87,7 @@ const SideNavWrapper = styled.div`
     width: 40%;
     .container {
       height: 10vh;
-      border: 1px solid #70707089;
+      border: 1px solid #7070703e;
 
       .icons,
       .brand {
@@ -97,10 +99,35 @@ const SideNavWrapper = styled.div`
       }
     }
 
-    .moveout {
-      animation: move 0.2s ease-in-out;
+    .movein {
+      animation: movein 0.2s ease-in-out;
     }
-    @keyframes move {
+
+    .moveout {
+      animation: moveout 0.2s ease-in-out;
+      transform: translate(-100%);
+    }
+
+    @keyframes moveout {
+      0% {
+        transform: translate(0%);
+      }
+
+      40% {
+        transform: translate(-20%);
+      }
+      60% {
+        transform: translate(-40%);
+      }
+      80% {
+        transform: translate(-60%);
+      }
+      100% {
+        transform: translate(-100%);
+      }
+    }
+
+    @keyframes movein {
       0% {
         transform: translate(-100%);
       }
@@ -123,9 +150,9 @@ const SideNavWrapper = styled.div`
       display: flex;
       flex-direction: column;
       align-items: start;
-      border: 1px solid #70707089;
+      border: 1px solid #7070703e;
       width: 100%;
-      height: auto;
+      height: 100%;
 
       .icons {
         display: flex;
