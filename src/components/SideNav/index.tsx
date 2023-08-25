@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
 import { Icons } from "../../constants/icons/icons";
+import SideNavWrapper from "./Sidenavwrapper";
 
 type TProp = {
   clickHandler: () => void;
@@ -25,48 +25,3 @@ const SideNav = ({ clickHandler }: TProp) => {
 };
 
 export default SideNav;
-
-const SideNavWrapper = styled.div`
-  width: 6%;
-  height: 100%;
-
-  .container {
-    height: 100vh;
-    border: 1px solid #7070703e;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-
-    .icons {
-      margin-top: 5rem;
-    }
-    .brand {
-      margin-top: 2rem;
-    }
-
-    .hamburger {
-      margin-top: 1rem;
-    }
-
-    .icon-sm {
-      display: none;
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    width: 40%;
-    .container {
-      height: 10vh;
-      border: 1px solid #7070703e;
-
-      .icons,
-      .brand {
-        display: none;
-      }
-
-      .icon-sm {
-        display: block;
-      }
-    }
-  }
-`;
