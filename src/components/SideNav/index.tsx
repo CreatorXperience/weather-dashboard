@@ -1,11 +1,11 @@
 import { styled } from "styled-components";
 import { Icons } from "../../constants/icons/icons";
 
-import useSlide from "../../hooks/useSlide";
+type TProp = {
+  clickHandler: () => void;
+};
 
-const SideNav = () => {
-  const { handleClick, IsClicked, ref } = useSlide();
-
+const SideNav = ({ clickHandler }: TProp) => {
   return (
     <SideNavWrapper>
       <div className="container">
@@ -14,31 +14,12 @@ const SideNav = () => {
         <div className="icons">{Icons.reportIcon()}</div>
         <div className="icons">{Icons.profileIcon()}</div>
         <div className="icons">{Icons.settingsIcon()}</div>
-        <div className="hamburger icon-sm" onClick={() => handleClick()}>
+        <div className="hamburger icon-sm" onClick={() => clickHandler()}>
           {Icons.hamburgerIcon()}
         </div>
       </div>
 
       {/* TODO: remove IsClicked and make side nav slide out */}
-
-      <div
-        className={`container-sm ${IsClicked ? "movein" : "moveout"}`}
-        ref={ref}
-      >
-        <div className="icons">{Icons.brand()}</div>
-        <div className="icons">
-          {Icons.homeIcon()} <p>Home</p>
-        </div>
-        <div className="icons">
-          {Icons.reportIcon()} <p>Report</p>{" "}
-        </div>
-        <div className="icons">
-          {Icons.profileIcon()} <p>Profile</p>
-        </div>
-        <div className="icons">
-          {Icons.settingsIcon()} <p>Settings</p>
-        </div>
-      </div>
     </SideNavWrapper>
   );
 };

@@ -4,6 +4,8 @@ import reportIcon from "../../assets/report-icon.svg";
 import profileIcon from "../../assets/profile-icon.svg";
 import settingsIcon from "../../assets/settings.svg";
 import hamburgerIcon from "../../assets/hamburger.svg";
+import notificationIcon from "../../assets/notification.svg";
+import topProfileIcon from "../../assets/top-profile.svg";
 const Icons = {
   brand: () => {
     return <img src={brandLogo} alt="brand logo" />;
@@ -22,6 +24,12 @@ const Icons = {
   },
   hamburgerIcon: () => {
     return <img src={hamburgerIcon} alt="hamburger icon" />;
+  },
+  NotificationIcon: () => {
+    return <img src={notificationIcon} alt="notification icon" />;
+  },
+  topProfileIcon: () => {
+    return <img src={topProfileIcon} alt="top profile icon" />;
   },
 };
 
