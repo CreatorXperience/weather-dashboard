@@ -1,15 +1,11 @@
 import { styled } from "styled-components";
 import { Icons } from "../../constants/icons/icons";
-import { useState, useRef } from "react";
+
+import useSlide from "../../hooks/useSlide";
 
 const SideNav = () => {
-  const [IsClicked, setIsClicked] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const { handleClick, IsClicked, ref } = useSlide();
 
-  const handleClick = () => {
-    setIsClicked((IsClicked) => !IsClicked);
-    // ref.current?.classList.toggle(".movein");
-  };
   return (
     <SideNavWrapper>
       <div className="container">
@@ -29,10 +25,7 @@ const SideNav = () => {
         className={`container-sm ${IsClicked ? "movein" : "moveout"}`}
         ref={ref}
       >
-        <div className="icons">
-          {Icons.brand()}
-          <p>Weather</p>
-        </div>
+        <div className="icons">{Icons.brand()}</div>
         <div className="icons">
           {Icons.homeIcon()} <p>Home</p>
         </div>
@@ -157,6 +150,7 @@ const SideNavWrapper = styled.div`
       .icons {
         display: flex;
         align-items: center;
+        justify-content: center;
         margin-left: 15px;
         margin-top: 2rem;
 
