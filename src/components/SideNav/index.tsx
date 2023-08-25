@@ -53,10 +53,6 @@ const SideNavWrapper = styled.div`
     }
   }
 
-  .container-sm {
-    display: none;
-  }
-
   @media screen and (max-width: 800px) {
     width: 40%;
     .container {
@@ -70,74 +66,6 @@ const SideNavWrapper = styled.div`
 
       .icon-sm {
         display: block;
-      }
-    }
-
-    .movein {
-      animation: movein 0.2s ease-in-out;
-    }
-
-    .moveout {
-      animation: moveout 0.2s ease-in-out;
-      transform: translate(-100%);
-    }
-
-    @keyframes moveout {
-      0% {
-        transform: translate(0%);
-      }
-
-      40% {
-        transform: translate(-20%);
-      }
-      60% {
-        transform: translate(-40%);
-      }
-      80% {
-        transform: translate(-60%);
-      }
-      100% {
-        transform: translate(-100%);
-      }
-    }
-
-    @keyframes movein {
-      0% {
-        transform: translate(-100%);
-      }
-
-      40% {
-        transform: translate(-60%);
-      }
-      60% {
-        transform: translate(-40%);
-      }
-      80% {
-        transform: translate(-20%);
-      }
-      100% {
-        transform: translate(0%);
-      }
-    }
-
-    .container-sm {
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      border: 1px solid #7070703e;
-      width: 100%;
-      height: 100%;
-
-      .icons {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 15px;
-        margin-top: 2rem;
-
-        p {
-          margin: 10px;
-        }
       }
     }
   }
