@@ -3,9 +3,10 @@ import { styled } from "styled-components";
 const SideNavWrapper = styled.div`
   width: 6%;
   height: 100%;
+  position: fixed;
 
   .container {
-    height: 100vh;
+    height: 100%;
     border: 1px solid #7070703e;
     display: flex;
     flex-flow: column;

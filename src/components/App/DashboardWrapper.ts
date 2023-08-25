@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 const DashboardWrapper = styled.div`
   .dashboard-wrapper {
     width: 100%;
-    height: 100vh;
+    height: 100%;
 
     border: 1px solid green;
 

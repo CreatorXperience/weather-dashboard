@@ -5,6 +5,19 @@ import Reports from ".";
 describe("weather report", () => {
   test("renders weather reports to the user", async () => {
     const Result = {
+      current: {
+        cloud: 0,
+        condition: {
+          text: "sunny",
+        },
+        isday: 1,
+        temp_c: 30,
+      },
+      location: {
+        name: "abuja",
+        region: "Federal capital territory",
+        tz_id: "Africa/Lagos",
+      },
       forecast: {
         forecastday: [
           {
@@ -38,3 +51,24 @@ describe("weather report", () => {
     screen.debug();
   });
 });
+
+// export type TOpenApiResponse = {
+//   current: {
+//     cloud: number;
+//     condition: {
+//       text: string;
+//     };
+//     isday: number;
+//     temp_c: number;
+//   };
+//   location: {
+//     name: string;
+//     region: string;
+//     tz_id: string;
+//   };
+//   forecast: {
+//     forecastday: {
+//       date: string;
+//     }[];
+//   };
+// };
