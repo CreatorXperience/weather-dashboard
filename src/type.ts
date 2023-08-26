@@ -6,7 +6,9 @@ export type TOpenApiResponse = {
     };
     isday: number;
     temp_c: number;
+    feelslike_c: number;
   };
+
   location: {
     name: string;
     region: string;

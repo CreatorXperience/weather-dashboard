@@ -18,8 +18,11 @@ const App = () => {
           <TopNav />
         </div>
 
-        <div className={`page-body ${IsClicked ? "movein" : "moveout"}`}>
-          <div className={`container-sm`} ref={ref}>
+        <div className={`page-body`}>
+          <div
+            className={`container-sm ${IsClicked ? " movein show" : "moveout"}`}
+            ref={ref}
+          >
             <div className="icons">{Icons.brand()}</div>
             <div className="icons">
               {Icons.homeIcon()} <p>Home</p>

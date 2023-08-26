@@ -6,6 +6,16 @@ type TProp = {
 };
 
 const CountryCard = ({ data }: TProp) => {
+  const checkCondition = () => {
+    if (data?.current.condition.text.includes("cloud")) {
+      return Icons.cloudyIcon();
+    } else if (data?.current.condition.text.includes("rain")) {
+      return Icons.cloudyRainyIcon();
+    } else {
+      return Icons.cloudySunnyIcon();
+    }
+  };
+
   return (
     <div className="report-card">
       <div className="report-details">
@@ -20,10 +30,12 @@ const CountryCard = ({ data }: TProp) => {
 
       <div className="reports-section">
         <div className="report-temperature">
-          <div className="weather_icon">{Icons.cloudyIcon()}</div>
+          <div className="weather_icon">{checkCondition()}</div>
           <div>{data?.current.condition.text}</div>
 
-          <div className="temp">{data?.current.cloud}&deg;c</div>
+          <div className="temp">
+            {Math.floor(data?.current.feelslike_c as number)}&deg;c
+          </div>
 
           <div className="other-reports">
             <div className="mini-cont">

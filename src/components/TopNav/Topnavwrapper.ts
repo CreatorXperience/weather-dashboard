@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 const TopNavWrapper = styled.div`
   width: 100%;
 
-  .container {
+  .top-container {
     width: 100%;
     height: 10vh;
     border: 1px solid red;
@@ -31,7 +31,7 @@ const TopNavWrapper = styled.div`
     }
   }
   @media screen and (max-width: 800px) {
-    .container {
+    .top-container {
       padding: 2px;
       .icons {
         margin: 5px;

@@ -5,7 +5,7 @@ const SideNavWrapper = styled.div`
   height: 100%;
   position: fixed;
 
-  .container {
+  .side-container {
     height: 100%;
     border: 1px solid #7070703e;
     display: flex;
@@ -30,7 +30,7 @@ const SideNavWrapper = styled.div`
 
   @media screen and (max-width: 800px) {
     width: 40%;
-    .container {
+    .side-container {
       height: 10vh;
       border: 1px solid #7070703e;
 

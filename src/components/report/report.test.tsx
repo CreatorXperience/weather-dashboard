@@ -10,6 +10,7 @@ describe("weather report", () => {
         condition: {
           text: "sunny",
         },
+        feelslike_c: 20,
         isday: 1,
         temp_c: 30,
       },
@@ -18,6 +19,7 @@ describe("weather report", () => {
         region: "Federal capital territory",
         tz_id: "Africa/Lagos",
       },
+
       forecast: {
         forecastday: [
           {

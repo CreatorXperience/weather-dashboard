@@ -28,12 +28,11 @@ const ReportsWrapper = styled.div`
   .reports-container {
     width: 100%;
     height: auto;
-    border: 1px solid red;
+    border: 3px solid blue;
 
     .report-text {
       font-size: 26px;
       font-weight: 400;
-
       padding: 20px;
     }
 
@@ -44,11 +43,11 @@ const ReportsWrapper = styled.div`
       .report-card {
         position: relative;
         width: 80%;
-        height: 400px;
+        height: 340px;
 
         border-radius: 15px;
         margin: 20px;
-        background-image: url("https://i.pinimg.com/564x/1f/cc/40/1fcc406fad3041b4f159522139cf4cf1.jpg");
+        background-image: url("https://i.pinimg.com/564x/0c/3f/c8/0c3fc8469ea75b07d1def1e836467398.jpg");
         background-repeat: no-repeat;
         background-size: cover;
 
@@ -85,7 +84,7 @@ const ReportsWrapper = styled.div`
           width: 80%;
           height: 80%;
           margin-top: 12px;
-          background-color: #8de0eb29;
+          background-color: #e98d0c29;
           backdrop-filter: blur(10px);
           border-radius: inherit;
 
@@ -129,9 +128,29 @@ const ReportsWrapper = styled.div`
                 color: white;
                 border-radius: 10px;
                 margin-left: 10px;
-                background-color: #097cf73e;
+                background-color: #e4e4e43d;
                 backdrop-filter: blur(20px);
               }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+
+    .reports-container {
+      width: 100%;
+      .card-wrapper {
+        .report-card {
+          width: 100%;
+          height: 300px;
+
+          .report-details {
+            .report-country {
+              font-size: 14px;
             }
           }
         }

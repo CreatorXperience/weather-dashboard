@@ -4,7 +4,7 @@ import TopNavWrapper from "./Topnavwrapper";
 const TopNav = () => {
   return (
     <TopNavWrapper>
-      <div className="container">
+      <div className="top-container">
         <div className="icons">{Icons.NotificationIcon()}</div>
         <div className="icons">{Icons.topProfileIcon()}</div>
         <div className="profile-circle">

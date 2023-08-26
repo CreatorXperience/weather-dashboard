@@ -8,6 +8,8 @@ import notificationIcon from "../../assets/notification.svg";
 import topProfileIcon from "../../assets/top-profile.svg";
 import cloudy from "../../assets/cloudy.svg";
 import cloudySunny from "../../assets/cloudysunny.svg";
+import cloudyRainy from "../../assets/cloudy-rainy.svg";
+import cloudyBolt from "../../assets/cloudybolt.svg";
 const Icons = {
   brand: () => {
     return <img src={brandLogo} alt="brand logo" />;
@@ -38,6 +40,12 @@ const Icons = {
   },
   cloudySunnyIcon: () => {
     return <img src={cloudySunny} alt="cloudy sunny icon" />;
+  },
+  cloudyRainyIcon: () => {
+    return <img src={cloudyRainy} alt="cloudy rainy icon" />;
+  },
+  clodyBoltIcon: () => {
+    return <img src={cloudyBolt} alt="clody bolt icon" />;
   },
 };
 
