@@ -1,23 +1,12 @@
-import { Icons } from "../../constants/icons/icons";
+import useCard from "../../hooks/useCard";
 import useSlider from "../../hooks/useSlider";
 
-import { TOpenApiResponse } from "../../type";
-
-type TProp = {
-  data: TOpenApiResponse | null;
-};
+import type { TProp } from "../../type";
 
 const CountryCard = ({ data }: TProp) => {
   const { $ref } = useSlider(3);
-  const checkCondition = () => {
-    if (data?.current.condition.text.includes("cloud")) {
-      return Icons.cloudyIcon();
-    } else if (data?.current.condition.text.includes("rain")) {
-      return Icons.cloudyRainyIcon();
-    } else {
-      return Icons.cloudySunnyIcon();
-    }
-  };
+
+  const { checkCondition, mapForecast } = useCard();
 
   return (
     <div className="report-card slider-container" ref={$ref}>
@@ -37,20 +26,16 @@ const CountryCard = ({ data }: TProp) => {
 
         <div className="reports-section">
           <div className="report-temperature">
-            <div className="weather_icon">{checkCondition()}</div>
+            <div className="weather_icon">
+              {checkCondition(data?.current.condition.text as string)}
+            </div>
             <div className="condition-text">{data?.current.condition.text}</div>
 
             <div className="temp">
               {Math.floor(data?.current.temp_c as number)}&deg;c
             </div>
 
-            <div className="other-reports">
-              <div className="mini-cont">
-                <div className="icon">{Icons.cloudySunnyIcon()}</div>
-                <div className="other-text">20&deg;c</div>
-                <div className="report-day">Mon</div>
-              </div>
-            </div>
+            <div className="other-reports">{mapForecast(data)}</div>
           </div>
         </div>
       </div>

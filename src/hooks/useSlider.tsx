@@ -69,7 +69,7 @@ const useSlider = (content: number = 1) => {
       if (content > 1) {
         setCurrentSlide(_currentSlide + 1);
       }
-    }, 12000);
+    }, 4000);
 
     if (_currentSlide > content - 1) {
       setCurrentSlide(0);

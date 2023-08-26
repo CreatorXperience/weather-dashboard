@@ -17,6 +17,16 @@ export type TOpenApiResponse = {
   forecast: {
     forecastday: {
       date: string;
+      day: {
+        avgtemp_c: number;
+        condition: {
+          text: "moderate rain";
+        };
+      };
     }[];
   };
+};
+
+export type TProp = {
+  data: TOpenApiResponse | null;
 };
