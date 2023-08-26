@@ -22,7 +22,7 @@ const Reports = ({ weatherResult, loading }: TReportProps) => {
 export default Reports;
 
 const ReportsWrapper = styled.div`
-  width: 40%;
+  width: 60%;
   height: auto;
 
   .reports-container {
@@ -43,96 +43,133 @@ const ReportsWrapper = styled.div`
       .report-card {
         position: relative;
         width: 80%;
-        height: 340px;
-
-        border-radius: 15px;
+        height: 400px;
+        display: flex;
+        border-radius: 80px;
+        border-bottom-left-radius: 50px;
         margin: 20px;
-        background-image: url("https://i.pinimg.com/564x/0c/3f/c8/0c3fc8469ea75b07d1def1e836467398.jpg");
         background-repeat: no-repeat;
         background-size: cover;
+        overflow: hidden;
 
-        .report-details {
-          position: absolute;
-          color: #ffffff;
-          z-index: 2;
-
-          margin: 10px;
-          padding: 12px;
-
-          .report-country {
-            font-size: 22px;
-            font-weight: 400;
-          }
-          .report-capital {
-            font-size: 12px;
+        .dotted-cont {
+          width: 20%;
+          height: 100%;
+          .dot {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: #000000;
           }
         }
 
-        /* img {
-          position: absolute;
-          z-index: 1;
+        .slider-item {
           width: 100%;
-          height: 600px;
-          border-radius: inherit;
-        } */
+          height: 100%;
+          flex-shrink: 0;
+          border: 1px solid red;
+          transition: all 0.3s ease-in-out;
 
-        .reports-section {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: 80%;
-          height: 80%;
-          margin-top: 12px;
-          background-color: #e98d0c29;
-          backdrop-filter: blur(10px);
-          border-radius: inherit;
+          .report-details {
+            position: absolute;
+            color: #ffffff;
+            z-index: 2;
 
-          .report-temperature {
-            width: 100%;
-            height: 80%;
-            display: flex;
-            flex-flow: column;
-            justify-content: center;
-            align-items: center;
+            margin: 10px;
+            padding: 12px;
 
-            .temp {
-              font-size: 4rem;
-              color: #dedddd;
+            .report-country {
+              font-size: 22px;
+              font-weight: 400;
             }
-
-            .temp-icon {
-              margin-top: 60px;
-              width: 200px;
-              height: 200px;
+            .report-capital {
+              font-size: 16px;
             }
+          }
 
-            .weather_icon {
-              margin-top: 60px;
-            }
+          .reports-section {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 70%;
+            margin-top: 12px;
+            /* background: linear-gradient(to right, #00000072, #000000fd);
+            backdrop-filter: blur(10px);
+            border-radius: 20px; */
 
-            .other-reports {
-              width: 80%;
-              height: 200px;
-
+            .report-temperature {
+              width: 100%;
+              height: 80%;
               display: flex;
+              flex-flow: column;
+              justify-content: center;
+              align-items: center;
 
-              .mini-cont {
-                width: 20%;
-                height: 100%;
-                padding: 5px;
+              .condition-text {
+                color: #ffffff;
+                font-size: 20px;
+                font-weight: 500px;
+                text-align: center;
+              }
+
+              .temp {
+                font-size: 8rem;
+                color: #ffffff;
+                font-weight: 800px;
+              }
+
+              .temp-icon {
+                margin-top: 60px;
+                width: 200px;
+                height: 200px;
+              }
+
+              .weather_icon {
+                margin-top: 60px;
+              }
+
+              .other-reports {
+                width: 80%;
+                height: 200px;
 
                 display: flex;
-                flex-flow: column;
-                align-items: center;
-                color: white;
-                border-radius: 10px;
-                margin-left: 10px;
-                background-color: #e4e4e43d;
-                backdrop-filter: blur(20px);
+
+                .mini-cont {
+                  width: 40%;
+                  height: 100%;
+                  padding: 5px;
+                  display: flex;
+                  flex-flow: column;
+                  align-items: center;
+                  padding: 12px;
+                  color: white;
+                  border-radius: 10px;
+                  margin-left: 10px;
+                  background-color: #00000069;
+                }
               }
             }
           }
+        }
+
+        .slide-1 {
+          background-image: url("https://i.pinimg.com/564x/34/78/64/347864d1599bda2612ac5e820fed3373.jpg");
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+
+        .slide-2 {
+          background-image: url("https://i.pinimg.com/564x/1e/66/cc/1e66ccbd502806993650bcac7d733f95.jpg");
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+
+        .slide-3 {
+          background-image: url("https://i.pinimg.com/564x/b8/76/2c/b8762c24f62677a3b10aed3aa7ec5192.jpg");
+          background-repeat: no-repeat;
+          background-size: cover;
         }
       }
     }
@@ -146,11 +183,24 @@ const ReportsWrapper = styled.div`
       .card-wrapper {
         .report-card {
           width: 100%;
-          height: 300px;
+          height: 320px;
 
-          .report-details {
-            .report-country {
-              font-size: 14px;
+          .slider-item {
+            .report-details {
+              .report-country {
+                font-size: 14px;
+              }
+            }
+
+            .reports-section {
+              .report-temperature {
+                .temp {
+                  font-size: 5rem;
+                }
+                .condition-text {
+                  font-size: 12px;
+                }
+              }
             }
           }
         }

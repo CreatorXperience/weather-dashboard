@@ -14,7 +14,7 @@ const App = () => {
     <DashboardWrapper>
       <div className="dashboard-wrapper">
         <div className="nav-wrapper">
-          <SideNav clickHandler={handleClick} />
+          <SideNav clickHandler={(e) => handleClick(e)} />
           <TopNav />
         </div>
 

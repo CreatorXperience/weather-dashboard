@@ -1,4 +1,6 @@
 import { Icons } from "../../constants/icons/icons";
+import useSlider from "../../hooks/useSlider";
+
 import { TOpenApiResponse } from "../../type";
 
 type TProp = {
@@ -6,6 +8,7 @@ type TProp = {
 };
 
 const CountryCard = ({ data }: TProp) => {
+  const { $ref } = useSlider(3);
   const checkCondition = () => {
     if (data?.current.condition.text.includes("cloud")) {
       return Icons.cloudyIcon();
@@ -17,41 +20,70 @@ const CountryCard = ({ data }: TProp) => {
   };
 
   return (
-    <div className="report-card">
-      <div className="report-details">
-        <div className="report-country">
-          <i className="fa-solid fa-location-dot" style={{ color: "#ffffff;" }}>
-            {" "}
-          </i>
-          {data?.location.region}
+    <div className="report-card slider-container" ref={$ref}>
+      <div className="slider-item slide-1">
+        <div className="report-details">
+          <div className="report-country">
+            <i
+              className="fa-solid fa-location-dot"
+              style={{ color: "#ffffff;" }}
+            >
+              {" "}
+            </i>
+            {data?.location.region}
+          </div>
+          <div className="report-capital">{data?.location.tz_id}</div>
         </div>
-        <div className="report-capital">{data?.location.tz_id}</div>
+
+        <div className="reports-section">
+          <div className="report-temperature">
+            <div className="weather_icon">{checkCondition()}</div>
+            <div className="condition-text">{data?.current.condition.text}</div>
+
+            <div className="temp">
+              {Math.floor(data?.current.temp_c as number)}&deg;c
+            </div>
+
+            <div className="other-reports">
+              <div className="mini-cont">
+                <div className="icon">{Icons.cloudySunnyIcon()}</div>
+                <div className="other-text">20&deg;c</div>
+                <div className="report-day">Mon</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="reports-section">
-        <div className="report-temperature">
-          <div className="weather_icon">{checkCondition()}</div>
-          <div>{data?.current.condition.text}</div>
-
-          <div className="temp">
-            {Math.floor(data?.current.feelslike_c as number)}&deg;c
+      <div className="slider-item slide-2">
+        <div className="report-details">
+          <div className="report-country">
+            <i
+              className="fa-solid fa-location-dot"
+              style={{ color: "#ffffff;" }}
+            >
+              {" "}
+            </i>
+            {data?.location.region}
           </div>
-
-          <div className="other-reports">
-            <div className="mini-cont">
-              <div className="icon">{Icons.cloudySunnyIcon()}</div>
-              <div className="other-text">20&deg;c</div>
-              <div className="report-day">Mon</div>
-            </div>
-            <div className="mini-cont">
-              <div className="icon">{Icons.cloudySunnyIcon()}</div>
-              <div className="other-text">20&deg;c</div>
-              <div className="report-day">Mon</div>
-            </div>
-          </div>
+          <div className="report-capital">{data?.location.tz_id}</div>
         </div>
       </div>
-      {/* <img src="https://i.pinimg.com/564x/05/0f/06/050f06cc78f2eefba57dc19cee242250.jpg" /> */}
+
+      <div className="slider-item slide-3">
+        <div className="report-details">
+          <div className="report-country">
+            <i
+              className="fa-solid fa-location-dot"
+              style={{ color: "#ffffff;" }}
+            >
+              {" "}
+            </i>
+            {data?.location.region}
+          </div>
+          <div className="report-capital">{data?.location.tz_id}</div>
+        </div>
+      </div>
     </div>
   );
 };
