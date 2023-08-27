@@ -16,8 +16,11 @@ const ReportsWrapper = styled.div`
     }
 
     .card-wrapper {
-      width: 100%;
+      width: 96%;
       display: flex;
+      flex-flow: column;
+      align-items: start;
+      justify-content: center;
 
       .report-card {
         position: relative;
@@ -147,6 +150,9 @@ const ReportsWrapper = styled.div`
     .reports-container {
       width: 100%;
       .card-wrapper {
+        width: 100%;
+        align-items: center;
+
         .report-card {
           width: 100%;
           height: 420px;

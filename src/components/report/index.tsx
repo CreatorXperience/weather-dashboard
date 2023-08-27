@@ -1,5 +1,6 @@
 import { TOpenApiResponse } from "../../type";
 import CountryCard from "../Card/countrycard";
+import D3Timeline from "../D3Timeline";
 import ReportsWrapper from "./reportwrapper";
 
 type TReportProps = {
@@ -14,6 +15,10 @@ const Reports = ({ weatherResult }: TReportProps) => {
         <div className="card-wrapper">
           <CountryCard data={weatherResult} />
         </div>
+
+        <div className="report-text">Weather Statistics</div>
+
+        <D3Timeline chartData={weatherResult?.forecast.forecastday} />
       </div>
     </ReportsWrapper>
   );

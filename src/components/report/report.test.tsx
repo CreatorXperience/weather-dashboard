@@ -24,9 +24,21 @@ describe("weather report", () => {
         forecastday: [
           {
             date: "09-01-2015",
+            day: {
+              avgtemp_c: 20,
+              condition: {
+                text: "moderate rain",
+              },
+            },
           },
           {
             date: "09-01-2015",
+            day: {
+              avgtemp_c: 20,
+              condition: {
+                text: "moderate rain",
+              },
+            },
           },
         ],
       },

@@ -20,7 +20,7 @@ export type TOpenApiResponse = {
       day: {
         avgtemp_c: number;
         condition: {
-          text: "moderate rain";
+          text: string;
         };
       };
     }[];
