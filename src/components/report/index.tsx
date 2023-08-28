@@ -7,6 +7,7 @@ type TReportProps = {
   weatherResult: TOpenApiResponse | null;
   loading: boolean;
 };
+
 const Reports = ({ weatherResult }: TReportProps) => {
   return (
     <ReportsWrapper>
