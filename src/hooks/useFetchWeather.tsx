@@ -12,7 +12,7 @@ const useFetchWeather = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        let data = await fetchWeatherResults("nigeria");
+        let data = await fetchWeatherResults("lagos");
         console.log(data);
         setWeatherResult(data);
         setLoading(false);

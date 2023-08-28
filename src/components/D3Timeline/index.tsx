@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import * as d3 from "d3";
 import { styled } from "styled-components";
 import useResize from "../../hooks/useResize";
+import checkDay from "../utils/checkday";
 
 type TChartData = {
   chartData:
@@ -17,15 +18,6 @@ type TChartData = {
     | undefined;
 };
 
-type Tdata = {
-  date: string;
-  day: {
-    avgtemp_c: number;
-    condition: {
-      text: string;
-    };
-  };
-};
 const D3Timeline = ({ chartData }: TChartData) => {
   const { ref, clientHeight, clientWidth } = useResize();
 
@@ -34,6 +26,9 @@ const D3Timeline = ({ chartData }: TChartData) => {
 
   const chart = () => {
     let data2: number[] = [];
+    let date: string[] = [];
+    let arr: string[] = [];
+
     let svgSelection = d3
       .select(ref.current)
       .append("svg")
@@ -44,14 +39,16 @@ const D3Timeline = ({ chartData }: TChartData) => {
     let arc = d3
       .arc()
       .innerRadius(0)
-      .outerRadius(width / 6);
+      .outerRadius(width / 5);
     let pie = d3.pie();
 
     let groupSelection = svgSelection
       .append("g")
       .attr("transform", `translate(${width / 2},${height / 2})`);
 
+    // @ts-ignore
     chartData?.map((data, i) => {
+      date.push(data.date);
       data2.push(data.day.avgtemp_c);
     });
 
@@ -65,16 +62,29 @@ const D3Timeline = ({ chartData }: TChartData) => {
       .append("path")
       //   @ts-ignore
       .attr("d", arc)
+
+      // @ts-ignore
       .attr("fill", (d, i) => {
         return d3.schemeSet3[i];
       });
+
+    date.map((current) => {
+      let myDate = new Date(current);
+      arr.push(checkDay(myDate.getDay()) as string);
+    });
 
     nestedGSelection
       .append("text")
       //   @ts-ignore
       .attr("transform", (d) => "translate(" + arc.centroid(d) + ")")
+
       //   @ts-ignore
-      .text((d) => d.data);
+      .text((d, i) => {
+        console.log(d);
+        return `${arr[i].slice(0, 3)} ${d.data} c`;
+      });
+
+    // console.log(checkDay(myDate.getDay()));
   };
 
   useEffect(() => {
@@ -99,8 +109,11 @@ const D3Wrapper = styled.div`
   width: 100%;
   .d3-container {
     width: 100%;
-    height: 400px;
+    height: 500px;
     border: 3px solid green;
     display: flex;
+    svg {
+      font-size: 12px;
+    }
   }
 `;

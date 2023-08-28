@@ -1,4 +1,5 @@
 import brandLogo from "../../assets/brand-logo.svg";
+
 import homeIcon from "../../assets/home-icon.svg";
 import reportIcon from "../../assets/report-icon.svg";
 import profileIcon from "../../assets/profile-icon.svg";
@@ -10,6 +11,7 @@ import cloudy from "../../assets/cloudy.svg";
 import cloudySunny from "../../assets/cloudysunny.svg";
 import cloudyRainy from "../../assets/cloudy-rainy.svg";
 import cloudyBolt from "../../assets/cloudybolt.svg";
+
 const Icons = {
   brand: () => {
     return <img src={brandLogo} alt="brand logo" />;
