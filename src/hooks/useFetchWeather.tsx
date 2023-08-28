@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import fetchWeatherResults from "../services/axios";
-
-type TOpenApiResponse = {
-  forecast: {
-    forecastday: {
-      date: string;
-    }[];
-  };
-};
+import { TOpenApiResponse } from "../type";
 
 const useFetchWeather = () => {
   const [weatherResult, setWeatherResult] = useState<TOpenApiResponse | null>(
@@ -19,8 +12,8 @@ const useFetchWeather = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        let data = await fetchWeatherResults("nigeria");
-
+        let data = await fetchWeatherResults("lagos");
+        console.log(data);
         setWeatherResult(data);
         setLoading(false);
       } catch (e) {

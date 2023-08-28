@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../components/App";
+
+import ReportContext from "../components/ReportContext";
 
 let browserRouter = createBrowserRouter([
   {
-    element: <App />,
     path: "/",
+    element: <ReportContext />,
   },
 ]);
 
