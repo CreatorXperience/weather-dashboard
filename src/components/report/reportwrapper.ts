@@ -25,7 +25,7 @@ const ReportsWrapper = styled.div`
       .report-card {
         position: relative;
         width: 80%;
-        height: 400px;
+        height: 450px;
         display: flex;
         border-radius: 80px;
         border-bottom-left-radius: 50px;
