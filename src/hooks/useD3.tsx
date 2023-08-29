@@ -74,7 +74,6 @@ const useD3 = (param: TParam[] | undefined) => {
 
       //   @ts-ignore
       .text((d, i) => {
-        console.log(d);
         return `${arr[i].slice(0, 3)} ${d.data} c`;
       });
 
