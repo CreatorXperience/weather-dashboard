@@ -190,6 +190,25 @@ const ReportsWrapper = styled.div`
   }
 
   @media screen and (max-width: 800px) {
+    .stats {
+      width: 100%;
+
+      .stats-title {
+        font-size: 16px;
+      }
+
+      .stats-header {
+        flex-flow: column;
+
+        .stats-select {
+          margin-top: 12px;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 800px) {
     width: 100%;
     flex-flow: column;
 

@@ -110,11 +110,6 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
           weatherResult?.forecast.forecastday[4].day.avgtemp_c as number
         ),
       },
-
-      // { date: new Date(1, 5, 2016), temp: 40000 },
-      // { date: new Date(1, 6, 2016), temp: 40000 },
-      // { date: new Date(1, 7, 2016), temp: 40000 },
-      // { date: new Date(1, 8, 2016), temp: 40000 },
     ];
     console.log(dataset),
       xScale.domain(
