@@ -39,16 +39,16 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
     return options;
   };
 
-  useEffect(() => {
+  const d3TimeLine = () => {
     let arrOfDays = weatherResult?.forecast.forecastday.map((day) => {
       return checkDay(new Date(day.date).getDay());
     });
 
     const margin = {
-      top: 20,
-      right: 20,
-      left: 20,
-      bottom: 20,
+      top: 40,
+      right: 40,
+      left: 40,
+      bottom: 40,
     };
 
     let width = clientWidth - margin.left - margin.right;
@@ -128,40 +128,60 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
       d3.max(dataset, (d) => d.temp),
     ] as Iterable<d3.NumberValue>);
 
-    let axisL = d3.axisLeft(yScale);
+    let axisL = d3.axisLeft(yScale).tickPadding(8);
 
     let axisB = d3
       .axisBottom(xScale)
       .ticks(d3.timeDay.every(1))
+      // @ts-ignore
       .tickFormat(d3.timeFormat("%a"));
 
     groupSelection
       .append("g")
+      .style("font-size", "12px")
       .attr("transform", `translate(${margin.left}, 0)`)
-      .call(axisL);
+      .call(axisL)
+      .call((g) => g.selectAll(".domain").remove())
+      .selectAll(".tick line")
+      .attr("stroke-opacity", 0);
 
     groupSelection
       .append("g")
-      .attr("transform", `translate(${margin.left}, ${height})`)
-      .call(axisB);
+      .style("font-size", "12px")
+      .attr("transform", `translate(${margin.left - 40}, ${height})`)
+      // @ts-ignore
+      .call(axisB)
+      .call((g) => g.select(".domain").remove())
+      .selectAll(".tick line")
+      .attr("stroke-opacity", 0);
+
+    svgSelection.selectAll(".tick text").attr("fill", "#777");
 
     const line = d3
       .line()
       .x((d) => {
+        // @ts-ignore
         return xScale(d.date);
       })
       .y((d) => {
+        // @ts-ignore
         return yScale(d.temp);
       });
 
     groupSelection
+      .append("g")
+      .attr("transform", `translate(${margin.left - 5},0 )`)
       .append("path")
       .datum(dataset)
       .attr("stroke", "steelblue")
-      .attr("fill", "none")
+      .attr("fill", "#F5F0FF")
       .attr("stroke-width", 1)
+      // @ts-ignore
       .attr("d", line);
+  };
 
+  useEffect(() => {
+    d3TimeLine();
     return () => {
       d3.select(_resizeRef.current).select("svg").remove();
     };
@@ -191,7 +211,7 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
       </div>
       <div className="stats">
         <div className="stats-header">
-          <div className="stats-title">Statistics</div>
+          <div className="stats-title">Average 5 days temperature</div>
           <select
             className="stats-select"
             ref={ref}
