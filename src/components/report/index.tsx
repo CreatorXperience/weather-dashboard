@@ -74,39 +74,66 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
     let dataset2 = weatherResult?.forecast.forecastday.map((data) => {
       return {
         date: new Date(data.date),
+        temp: data.day.avgtemp_c,
       };
     });
 
     console.log(dataset2);
     let dataset = [
-      { date: new Date("2022-01-01"), pizzas: 4000 },
-      { date: new Date("2022, 02,01"), pizzas: 800 },
-      { date: new Date("2022-03-01"), pizzas: 300 },
-      { date: new Date("2022-04-01"), pizzas: 1000 },
-      { date: new Date("2022-05-01"), pizzas: 200 },
-      { date: new Date("2022-05-01"), pizzas: 300 },
-      // { date: new Date(1, 5, 2016), pizzas: 40000 },
-      // { date: new Date(1, 6, 2016), pizzas: 40000 },
-      // { date: new Date(1, 7, 2016), pizzas: 40000 },
-      // { date: new Date(1, 8, 2016), pizzas: 40000 },
-    ];
+      {
+        date: new Date(weatherResult?.forecast.forecastday[0].date as string),
+        temp: new Date(
+          weatherResult?.forecast.forecastday[0].day.avgtemp_c as number
+        ),
+      },
+      {
+        date: new Date(weatherResult?.forecast.forecastday[1].date as string),
+        temp: new Date(
+          weatherResult?.forecast.forecastday[1].day.avgtemp_c as number
+        ),
+      },
+      {
+        date: new Date(weatherResult?.forecast.forecastday[2].date as string),
+        temp: new Date(
+          weatherResult?.forecast.forecastday[2].day.avgtemp_c as number
+        ),
+      },
+      {
+        date: new Date(weatherResult?.forecast.forecastday[3].date as string),
+        temp: new Date(
+          weatherResult?.forecast.forecastday[3].day.avgtemp_c as number
+        ),
+      },
+      {
+        date: new Date(weatherResult?.forecast.forecastday[4].date as string),
+        temp: new Date(
+          weatherResult?.forecast.forecastday[4].day.avgtemp_c as number
+        ),
+      },
 
-    xScale.domain(
-      d3.extent(dataset, (d) => {
-        return d.date;
-      }) as Iterable<Date | d3.NumberValue>
-    );
+      // { date: new Date(1, 5, 2016), temp: 40000 },
+      // { date: new Date(1, 6, 2016), temp: 40000 },
+      // { date: new Date(1, 7, 2016), temp: 40000 },
+      // { date: new Date(1, 8, 2016), temp: 40000 },
+    ];
+    console.log(dataset),
+      xScale.domain(
+        d3.extent(dataset, (d) => {
+          return d.date;
+        }) as Iterable<Date | d3.NumberValue>
+      );
 
     yScale.domain([
       0,
-      d3.max(dataset, (d) => d.pizzas),
+      d3.max(dataset, (d) => d.temp),
     ] as Iterable<d3.NumberValue>);
 
     let axisL = d3.axisLeft(yScale);
+
     let axisB = d3
       .axisBottom(xScale)
-      .ticks(d3.timeWeek.every(4))
-      .tickFormat(d3.timeFormat("%B %d, %Y"));
+      .ticks(d3.timeDay.every(1))
+      .tickFormat(d3.timeFormat("%a"));
 
     groupSelection
       .append("g")
@@ -124,7 +151,7 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
         return xScale(d.date);
       })
       .y((d) => {
-        return yScale(d.pizzas);
+        return yScale(d.temp);
       });
 
     groupSelection
