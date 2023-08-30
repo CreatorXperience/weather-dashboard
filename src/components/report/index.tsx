@@ -41,67 +41,99 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
 
   useEffect(() => {
     let arrOfDays = weatherResult?.forecast.forecastday.map((day) => {
-      return {
-        day: checkDay(new Date(day.date).getDay()),
-      };
+      return checkDay(new Date(day.date).getDay());
     });
 
-    console.log(weatherResult);
+    const margin = {
+      top: 20,
+      right: 20,
+      left: 20,
+      bottom: 20,
+    };
 
-    console.log(arrOfDays);
+    let width = clientWidth - margin.left - margin.right;
+    let height = clientHeight - margin.top - margin.bottom;
+    //   console.log(weatherResult);
+
+    //   console.log(arrOfDays);
+
+    let xScale = d3.scaleTime().range([0, width]);
+    let yScale = d3.scaleLinear().range([height, 0]);
 
     let svgSelection = d3
       .select(_resizeRef.current)
       .append("svg")
-      .attr("width", clientWidth)
-      .attr("height", clientHeight)
+      .attr("width", width + margin.right + margin.left)
+      .attr("height", height + margin.top + margin.bottom)
       .style("border", "3px solid magenta");
 
-    let scaleX = d3
-      .scaleBand()
-      .domain(arrOfDays?.map((d) => d.day) as Iterable<string>)
-      .range([0, clientWidth - 100]);
-
-    let scaleY = d3
-      .scaleLinear()
-      .domain([0, 50])
-      .range([0, clientHeight - 100]);
-
-    let axisL = d3.axisLeft(scaleY);
-    let axisB = d3.axisBottom(scaleX);
-
-    let G = svgSelection
+    let groupSelection = svgSelection
       .append("g")
-      .attr("transform", "translate(50," + (clientHeight - 90) + ")")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    let dataset2 = weatherResult?.forecast.forecastday.map((data) => {
+      return {
+        date: new Date(data.date),
+      };
+    });
+
+    console.log(dataset2);
+    let dataset = [
+      { date: new Date("2022-01-01"), pizzas: 4000 },
+      { date: new Date("2022, 02,01"), pizzas: 800 },
+      { date: new Date("2022-03-01"), pizzas: 300 },
+      { date: new Date("2022-04-01"), pizzas: 1000 },
+      { date: new Date("2022-05-01"), pizzas: 200 },
+      { date: new Date("2022-05-01"), pizzas: 300 },
+      // { date: new Date(1, 5, 2016), pizzas: 40000 },
+      // { date: new Date(1, 6, 2016), pizzas: 40000 },
+      // { date: new Date(1, 7, 2016), pizzas: 40000 },
+      // { date: new Date(1, 8, 2016), pizzas: 40000 },
+    ];
+
+    xScale.domain(
+      d3.extent(dataset, (d) => {
+        return d.date;
+      }) as Iterable<Date | d3.NumberValue>
+    );
+
+    yScale.domain([
+      0,
+      d3.max(dataset, (d) => d.pizzas),
+    ] as Iterable<d3.NumberValue>);
+
+    let axisL = d3.axisLeft(yScale);
+    let axisB = d3
+      .axisBottom(xScale)
+      .ticks(d3.timeWeek.every(4))
+      .tickFormat(d3.timeFormat("%B %d, %Y"));
+
+    groupSelection
+      .append("g")
+      .attr("transform", `translate(${margin.left}, 0)`)
+      .call(axisL);
+
+    groupSelection
+      .append("g")
+      .attr("transform", `translate(${margin.left}, ${height})`)
       .call(axisB);
 
-    let G1 = svgSelection
-      .append("g")
-      .attr("transform", "translate(50,10)")
-      .call(axisL)
+    const line = d3
+      .line()
+      .x((d) => {
+        return xScale(d.date);
+      })
+      .y((d) => {
+        return yScale(d.pizzas);
+      });
+
+    groupSelection
       .append("path")
-      .attr("d");
-
-    // let line = d3
-    //   .line()
-    //   // @ts-ignore
-    //   .y((d) => {
-    //     // @ts-ignore
-    //     return scaleY(d.date);
-    //   });
-
-    // // let degree = weatherResult?.forecast.forecastday.map((data) => {
-    // //   return {
-    // //     data: data.day.avgtemp_c,
-    // //   };
-    // // });
-
-    // // svgSelection
-    // //   .append("path")
-    // //   .datum(degree)
-    // //   .attr("stroke", "steelblue")
-    // //   .attr("stroke-width", 1)
-    // //   .attr("d");
+      .datum(dataset)
+      .attr("stroke", "steelblue")
+      .attr("fill", "none")
+      .attr("stroke-width", 1)
+      .attr("d", line);
 
     return () => {
       d3.select(_resizeRef.current).select("svg").remove();
