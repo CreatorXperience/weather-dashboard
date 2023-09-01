@@ -26,7 +26,7 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
   const [countryList, setCountryList] = useState<
     { country: string; iso2: string }[] | null
   >(null);
-
+  // @ts-ignore
   const handleGetCountry = (e: React.MouseEvent<HTMLSelectElement>) => {
     setTerm(ref.current?.value as string);
   };
@@ -73,16 +73,20 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
       .scaleLinear()
       .domain([
         0,
+        // @ts-ignore
         d3.max(dataSet, (d, i) => d.data),
       ] as Iterable<d3.NumberValue>)
       .range([0, clientHeight - 50]);
 
+    // @ts-ignore
     let rect = svgSelection
       .selectAll("rect")
       .data(dataSet)
       .enter()
       .append("rect")
+      // @ts-ignore
       .attr("x", (d, i) => (i * clientWidth) / 10)
+      // @ts-ignore
       .attr("y", (d, i) => clientHeight - yScale(d.data))
       .attr("width", clientWidth / 12)
       .attr("height", (d) => yScale(d.data))
@@ -97,8 +101,9 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
       .enter()
       .append("text")
       .text((d) => d.value)
+      // @ts-ignore
       .attr("x", (d, i) => i * 80)
-      .attr("y", (d, i) => clientHeight - 20 - yScale(d.data));
+      .attr("y", (d) => clientHeight - 20 - yScale(d.data));
 
     return () => {
       d3.select(_barRef.current).select("svg").remove();
