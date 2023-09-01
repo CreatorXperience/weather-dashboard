@@ -116,7 +116,7 @@ const DashboardWrapper = styled.div`
         .weather-info {
           width: 100%;
           margin-left: 0px;
-          border: 3px solid red;
+          /* border: 3px solid red; */
         }
       }
     }
