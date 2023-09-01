@@ -7,6 +7,12 @@ const useFetchWeather = () => {
     null
   );
 
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((data) => {
+      console.log(data);
+    });
+  });
+
   const [searchTerm, setSearchTerm] = useState<string>("lagos");
   const [loading, setLoading] = useState(true);
 
