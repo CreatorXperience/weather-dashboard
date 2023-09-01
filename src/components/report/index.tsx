@@ -7,6 +7,7 @@ import { fetchCountryList } from "../../services/axios";
 import useLineChart from "../../hooks/useLineChart";
 import * as d3 from "d3";
 import useResize from "../../hooks/useResize";
+import useHumidity from "../../hooks/useHumidityChart";
 
 export type TReportProps = {
   weatherResult: TOpenApiResponse | null;
@@ -16,7 +17,9 @@ export type TReportProps = {
 
 const Reports = ({ weatherResult, setTerm }: TReportProps) => {
   const { _resizeRef } = useLineChart(weatherResult);
-  const { ref: _humidResizeRef, clientHeight, clientWidth } = useResize();
+  const { _humidResizeRef } = useHumidity(weatherResult);
+
+  const { ref: _barRef, clientHeight, clientWidth } = useResize();
 
   const ref = useRef<HTMLSelectElement | null>(null);
 
@@ -42,100 +45,63 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
 
   useEffect(() => {
     let svgSelection = d3
-      .select(_humidResizeRef.current)
+      .select(_barRef.current)
       .append("svg")
       .attr("width", clientWidth)
       .attr("height", clientHeight);
 
-    let margin = { left: 20, right: 20, top: 20, bottom: 20 };
-    let width = clientWidth - margin.left - margin.right;
-    let height = clientHeight - margin.top - margin.bottom;
-
-    let dataset5 = [
+    let dataSet = [
       {
-        date: new Date(weatherResult?.forecast.forecastday[0].date as string),
-        deg: weatherResult?.forecast.forecastday[0].day.avghumidity,
+        data: 20,
+        value: "friday",
       },
       {
-        date: new Date(weatherResult?.forecast.forecastday[1].date as string),
-        deg: weatherResult?.forecast.forecastday[1].day.avghumidity,
+        data: 40,
+        value: "friday",
       },
       {
-        date: new Date(weatherResult?.forecast.forecastday[2].date as string),
-        deg: weatherResult?.forecast.forecastday[2].day.avghumidity,
+        data: 10,
+        value: "friday",
       },
       {
-        date: new Date(weatherResult?.forecast.forecastday[3].date as string),
-        deg: weatherResult?.forecast.forecastday[3].day.avghumidity,
-      },
-      {
-        date: new Date(weatherResult?.forecast.forecastday[4].date as string),
-        deg: weatherResult?.forecast.forecastday[4].day.avghumidity,
+        data: 30,
+        value: "friday",
       },
     ];
 
-    console.log(dataset5);
-
-    let xScale = d3
-      .scaleTime()
-      .domain(
-        d3.extent(dataset5, (d) => d.date) as Iterable<Date | d3.NumberValue>
-      )
-      .range([0, width]);
-
     let yScale = d3
       .scaleLinear()
-      .domain([0, d3.max(dataset5, (d) => d.deg)] as Iterable<d3.NumberValue>)
-      .range([height - 50, 0]);
+      .domain([
+        0,
+        d3.max(dataSet, (d, i) => d.data),
+      ] as Iterable<d3.NumberValue>)
+      .range([0, clientHeight - 50]);
 
-    let axisB = d3
-      .axisBottom(xScale)
-      .ticks(d3.timeDay.every(1))
-      // @ts-ignore
-      .tickFormat(d3.timeFormat("%a"));
+    let rect = svgSelection
+      .selectAll("rect")
+      .data(dataSet)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => (i * clientWidth) / 10)
+      .attr("y", (d, i) => clientHeight - yScale(d.data))
+      .attr("width", clientWidth / 12)
+      .attr("height", (d) => yScale(d.data))
+      .style("fill", "#077ad8")
+      .append("text")
+      .text((d) => d.value)
+      .style("color", "red");
 
-    let axisL = d3.axisLeft(yScale);
-
-    let topG = svgSelection
-      .append("g")
-      .attr("translate", `transform(${20},${margin.top} )`);
-    // @ts-ignore
-    topG
-      .append("g")
-      .attr("transform", `translate(${margin.left},${height})`)
-      .call(axisB, 1)
-      .call((g) => g.select(".domain").remove());
-
-    topG
-      .append("g")
-      .attr("transform", `translate(${margin.left + 10},${margin.top + 30})`)
-      .call(axisL)
-      .call((g) => g.select(".domain").remove())
-      .selectAll(".tick line")
-      .attr("stroke-opacity", 0);
-
-    const line = d3
-      .line()
-      .x((d) => {
-        // @ts-ignore
-        return xScale(d.date);
-      })
-      // @ts-ignore
-      .y((d) => yScale(d.deg));
-
-    topG
-      .append("g")
-      .attr("transform", `translate(${margin.left}, 20)`)
-      .append("path")
-      .datum(dataset5)
-      .attr("stroke", "red")
-      .attr("fill", "#F5F0FF")
-      .attr("stroke-width", "1px")
-      // @ts-ignore
-      .attr("d", line);
+    svgSelection
+      .selectAll("text")
+      .data(dataSet)
+      .enter()
+      .append("text")
+      .text((d) => d.value)
+      .attr("x", (d, i) => i * 80)
+      .attr("y", (d, i) => clientHeight - 20 - yScale(d.data));
 
     return () => {
-      d3.select(_humidResizeRef.current).select("svg").remove();
+      d3.select(_barRef.current).select("svg").remove();
     };
   });
 
@@ -180,6 +146,12 @@ const Reports = ({ weatherResult, setTerm }: TReportProps) => {
           <div className="stats-title">Average 5 days humidity</div>
         </div>
         <div className="humidity-stats" ref={_humidResizeRef}></div>
+
+        <div className="stats-header">
+          <div className="stats-title">Average 5 days humidity</div>
+        </div>
+
+        <div className="bar-stats" ref={_barRef}></div>
       </div>
     </ReportsWrapper>
   );
