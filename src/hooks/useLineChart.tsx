@@ -56,12 +56,12 @@ const useLineChart = (result: TOpenApiResponse | null) => {
         temp: new Date(result?.forecast.forecastday[4].day.avgtemp_c as number),
       },
     ];
-    console.log(dataset),
-      xScale.domain(
-        d3.extent(dataset, (d) => {
-          return d.date;
-        }) as Iterable<Date | d3.NumberValue>
-      );
+
+    xScale.domain(
+      d3.extent(dataset, (d) => {
+        return d.date;
+      }) as Iterable<Date | d3.NumberValue>
+    );
 
     yScale.domain([
       0,
@@ -114,7 +114,7 @@ const useLineChart = (result: TOpenApiResponse | null) => {
       .append("path")
       .datum(dataset)
       .attr("stroke", "steelblue")
-      .attr("fill", "#F5F0FF")
+      .attr("fill", "#cdf4ef89")
       .attr("stroke-width", 1)
       // @ts-ignore
       .attr("d", line);
@@ -128,7 +128,6 @@ const useLineChart = (result: TOpenApiResponse | null) => {
   });
 
   return {
-    d3TimeLine,
     _resizeRef,
   };
 };

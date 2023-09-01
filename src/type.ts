@@ -19,6 +19,7 @@ export type TOpenApiResponse = {
       date: string;
       day: {
         avgtemp_c: number;
+        avghumidity: number;
         condition: {
           text: string;
         };

@@ -187,6 +187,11 @@ const ReportsWrapper = styled.div`
       height: 400px;
       border: 3px solid purple;
     }
+    .humidity-stats {
+      width: 100%;
+      height: 400px;
+      border: 3px solid purple;
+    }
   }
 
   @media screen and (max-width: 800px) {
