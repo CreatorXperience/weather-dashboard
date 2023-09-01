@@ -6,7 +6,8 @@ const TopNavWrapper = styled.div`
   .top-container {
     width: 100%;
     height: 10vh;
-    border: 1px solid red;
+
+    border-bottom: 1px solid lightgrey;
     display: flex;
     justify-content: end;
     padding: 12px;

@@ -4,11 +4,11 @@ const DashboardWrapper = styled.div`
   .dashboard-wrapper {
     width: 100%;
     height: 100%;
-    border: 1px solid green;
+    /* border: 1px solid green; */
 
     .nav-wrapper {
       width: 100%;
-      border: 1px solid green;
+      /* border: 1px solid green; */
       height: 10vh;
     }
 
@@ -21,7 +21,7 @@ const DashboardWrapper = styled.div`
       .weather-info {
         width: 90%;
         height: 80%;
-        border: 1px solid purple;
+        /* border: 1px solid purple; */
         margin-left: 14vh;
       }
     }
@@ -92,7 +92,7 @@ const DashboardWrapper = styled.div`
           display: flex;
           flex-direction: column;
           align-items: start;
-          border: 1px solid #7070703e;
+          /* border: 1px solid #7070703e; */
           width: 50%;
           position: fixed;
           z-index: 5;

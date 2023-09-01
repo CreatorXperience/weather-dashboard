@@ -27,8 +27,8 @@ const useLineChart = (result: TOpenApiResponse | null) => {
       .select(_resizeRef.current)
       .append("svg")
       .attr("width", width + margin.right + margin.left)
-      .attr("height", height + margin.top + margin.bottom)
-      .style("border", "3px solid magenta");
+      .attr("height", height + margin.top + margin.bottom);
+    //   .style("border", "3px solid magenta");
 
     let groupSelection = svgSelection
       .append("g")

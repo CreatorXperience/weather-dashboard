@@ -27,8 +27,8 @@ const useD3 = (param: TParam[] | undefined) => {
       .select(ref.current)
       .append("svg")
       .attr("width", width as number)
-      .attr("height", height as number)
-      .style("border", "1px solid red");
+      .attr("height", height as number);
+    // .style("border", "1px solid red");
 
     let arc = d3
       .arc()
