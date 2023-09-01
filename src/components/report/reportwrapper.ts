@@ -1,13 +1,15 @@
 import { styled } from "styled-components";
 
 const ReportsWrapper = styled.div`
-  width: 60%;
+  width: 100%;
   height: auto;
+  display: flex;
+  /* border: 5px solid green; */
 
   .reports-container {
-    width: 100%;
+    width: 50%;
     height: auto;
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
 
     .report-text {
       font-size: 26px;
@@ -38,7 +40,7 @@ const ReportsWrapper = styled.div`
           width: 100%;
           height: 100%;
           flex-shrink: 0;
-          border: 1px solid red;
+          /* border: 1px solid red; */
           transition: all 0.3s ease-in-out;
 
           .report-details {
@@ -66,7 +68,7 @@ const ReportsWrapper = styled.div`
             width: 80%;
             height: 70%;
             margin-top: 12px;
-            border: 1px solid red;
+            /* border: 1px solid red; */
 
             .report-temperature {
               width: 100%;
@@ -144,8 +146,83 @@ const ReportsWrapper = styled.div`
     }
   }
 
+  .stats {
+    width: 50%;
+    height: auto;
+    /* border: 3px solid red; */
+    background-color: #fffcfc;
+    border: 0.5px solid lightgray;
+
+    .stats-title {
+      font-size: 26px;
+      font-weight: 400;
+    }
+
+    .stats-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 20px;
+
+      /* --webkit-scrollbar {
+        display: none;
+      } */
+
+      .stats-select {
+        background-color: white;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        width: 30%;
+
+        option {
+          /* border: 0.5px solid black; */
+          width: 20%;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .forecast-stats {
+      width: 100%;
+      height: 400px;
+      /* border: 3px solid purple; */
+    }
+    .humidity-stats {
+      width: 100%;
+      height: 400px;
+      /* border: 3px solid purple; */
+    }
+
+    .bar-stats {
+      width: 100%;
+      height: 300px;
+      /* border: 3px solid magenta; */
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .stats {
+      width: 100%;
+
+      .stats-title {
+        font-size: 16px;
+      }
+
+      .stats-header {
+        flex-flow: column;
+
+        .stats-select {
+          margin-top: 12px;
+          width: 100%;
+        }
+      }
+    }
+  }
+
   @media screen and (max-width: 800px) {
     width: 100%;
+    flex-flow: column;
 
     .reports-container {
       width: 100%;

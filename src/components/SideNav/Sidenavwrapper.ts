@@ -29,6 +29,8 @@ const SideNavWrapper = styled.div`
   }
 
   @media screen and (max-width: 800px) {
+    position: absolute;
+
     width: 40%;
     .side-container {
       height: 10vh;

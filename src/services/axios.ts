@@ -6,9 +6,14 @@ const fetchWeatherResults = async (city_name: string) => {
     `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city_name}&days=${5}`
   );
 
-  console.log(data);
-
   return data.data;
 };
 
-export default fetchWeatherResults;
+const fetchCountryList = async () => {
+  let data = await axios.get(`https://countriesnow.space/api/v0.1/countries`);
+  console.log(data.data.data);
+  return data.data.data;
+};
+
+// TODO: fix FetchCountry List function
+export { fetchWeatherResults, fetchCountryList };

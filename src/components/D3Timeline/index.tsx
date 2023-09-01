@@ -32,7 +32,7 @@ const D3Wrapper = styled.div`
   .d3-container {
     width: 100%;
     height: 500px;
-    border: 3px solid green;
+    /* border: 3px solid green; */
     display: flex;
     svg {
       font-size: 12px;
