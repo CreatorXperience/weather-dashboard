@@ -1,4 +1,3 @@
-import checkDay from "../components/utils/checkday";
 import { TOpenApiResponse } from "../type";
 import useResize from "./useResize";
 import * as d3 from "d3";
@@ -8,10 +7,6 @@ const useLineChart = (result: TOpenApiResponse | null) => {
   const { clientHeight, clientWidth, ref: _resizeRef } = useResize();
 
   const d3TimeLine = () => {
-    // let arrOfDays = result?.forecast.forecastday.map((day) => {
-    //   return checkDay(new Date(day.date).getDay());
-    // });
-
     const margin = {
       top: 40,
       right: 40,
@@ -39,14 +34,6 @@ const useLineChart = (result: TOpenApiResponse | null) => {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    let dataset2 = result?.forecast.forecastday.map((data) => {
-      return {
-        date: new Date(data.date),
-        temp: data.day.avgtemp_c,
-      };
-    });
-
-    console.log(dataset2);
     let dataset = [
       {
         date: new Date(result?.forecast.forecastday[0].date as string),
