@@ -1,4 +1,4 @@
-## Weather Dashboard App
+# Weather Dashboard App
 Overview
 The Weather Dashboard App is a minimalist weather that allows users to check the current weather conditions for a specific location. It provides users with essential weather information in a clean and straightforward interface.
 
@@ -6,9 +6,9 @@ Weather Dashboard Screenshot
 
 # Features
 Current Weather: Get real-time weather data for a chosen location.
-Temperature: View the current temperature in Celsius or Fahrenheit.
+Temperature: View the current temperature in Celsius.
 Weather Icons: Easily identify weather conditions with intuitive icons.
-Location Search: Search for weather information by city name or ZIP code.
+Location Search: Search for weather information by country name.
 Responsive Design: The app is designed to work seamlessly on both desktop and mobile devices.
 
 # Technologies Used
