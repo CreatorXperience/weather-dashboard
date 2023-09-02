@@ -14,9 +14,10 @@ Responsive Design: The app is designed to work seamlessly on both desktop and mo
 # Technologies Used
 HTML5
 CSS3
-JavaScript
-REeact
+Typescript
+React
 Weather API: Used to fetch weather data.
+Font-awesome-icon
 
 # Usage
 Clone this repository to your local machine.
