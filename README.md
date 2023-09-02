@@ -1,27 +1,40 @@
-# React + TypeScript + Vite
+## Weather Dashboard App
+Overview
+The Weather Dashboard App is a minimalist weather that allows users to check the current weather conditions for a specific location. It provides users with essential weather information in a clean and straightforward interface.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Weather Dashboard Screenshot
 
-Currently, two official plugins are available:
+# Features
+Current Weather: Get real-time weather data for a chosen location.
+Temperature: View the current temperature in Celsius or Fahrenheit.
+Weather Icons: Easily identify weather conditions with intuitive icons.
+Location Search: Search for weather information by city name or ZIP code.
+Responsive Design: The app is designed to work seamlessly on both desktop and mobile devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Technologies Used
+HTML5
+CSS3
+JavaScript
+REeact
+Weather API: Used to fetch weather data.
 
-## Expanding the ESLint configuration
+# Usage
+Clone this repository to your local machine.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# bash
+copy 
+git clone https://github.com/CreatorXperience/weather-dashboard.git
+![clone](https://github.com/CreatorXperience/weather-dashboard/assets/124584716/40890936-cf6f-4056-9523-cad3ccdee435)
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+select the ccountry name of the location you want to check the weather for to fetch and display the current weather conditions.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+Acknowledgments
+Weather icons by font-awesome Icons.
+Weather data provided by Weather API.
+Author
+[Habeeb Muhydeen]
+
+Contact
+If you have any questions or feedback, feel free to reach out at allyearmustobey@gmail.com.
